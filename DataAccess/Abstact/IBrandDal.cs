@@ -6,9 +6,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstact
 {
-    public interface ICarDal:IEntityRepository<Car>
+    public interface IBrandDal : IEntityRepository<Brand>
     {
-        
-
     }
 }
