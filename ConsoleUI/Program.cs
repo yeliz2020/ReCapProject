@@ -11,10 +11,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarTest();
+            //DTO---> Data Transformation Object
+            CarTest();
 
             //BrandTest();
 
+            //ColorTest();
+
+
+        }
+
+        private static void ColorTest()
+        {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             foreach (var color in colorManager.GetAll())
             {
@@ -40,9 +48,9 @@ namespace ConsoleUI
             //     Console.WriteLine("Model Yılı: {0}  Günlük Ücreti: {1} Özellikleri: {2}", car.ModelYear, car.DailyPrice, car.Description);
             // }
 
-            foreach (var car in carManager.GetAllByColorId(2))
+            foreach (var car in carManager.GetCarDetails())
             {
-                Console.WriteLine("Model Yılı: {0}  Günlük Ücreti: {1} Özellikleri: {2}", car.ModelYear, car.DailyPrice, car.Description);
+                Console.WriteLine(car.BrandName +" "+ car.ColorName+" "+ car.DailyPrice + " "+ car.Description);
             }
         }
     }

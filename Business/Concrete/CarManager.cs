@@ -8,6 +8,7 @@ using DataAccess.Abstact;
 using DataAccess.Concrete.InMemory;
 
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -42,6 +43,11 @@ namespace Business.Concrete
         public List<Car> GetByDailyPrice(decimal min, decimal max)
         {
             return _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
         }
     }
 }

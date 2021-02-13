@@ -7,6 +7,7 @@ using System.Text;
 using DataAccess.Abstact;
 
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -59,7 +60,10 @@ namespace DataAccess.Concrete.InMemory
             return _cars.Where(p => p.BrandId == brandId).ToList(); // içindeki şarta uyan bütün elemanları  yeni bir liste haline getirir ve döndürür
         }
 
-        
+        public List<CarDetailDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
+        }
 
         public void Update(Car car)
         {
