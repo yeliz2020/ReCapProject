@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 using Business.Abstact;
+using Business.Constants;
+
+using Core.Utilities.Results;
 
 using DataAccess.Abstact;
 
@@ -19,16 +22,22 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
             //iş kodları
-            return _brandDal.GetAll();
-            
+            if (DateTime.Now.Hour == 22)
+            {
+                return new ErrorDataResult<List<Brand>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandsListed);
+
         }
 
-        public Brand GetById(int brandId)
+        public IDataResult<Brand> GetById(int brandId)
         {
-            return _brandDal.Get(b => b.BrandId == brandId);
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == brandId));
         }
+
+     
     }
 }
