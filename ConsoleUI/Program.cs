@@ -47,11 +47,20 @@ namespace ConsoleUI
             // {
             //     Console.WriteLine("Model Yılı: {0}  Günlük Ücreti: {1} Özellikleri: {2}", car.ModelYear, car.DailyPrice, car.Description);
             // }
-
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success==true)
             {
-                Console.WriteLine(car.BrandName +" "+ car.ColorName+" "+ car.DailyPrice + " "+ car.Description);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.BrandName + " " + car.ColorName + " " + car.DailyPrice + " " + car.Description);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+            
         }
     }
 }
