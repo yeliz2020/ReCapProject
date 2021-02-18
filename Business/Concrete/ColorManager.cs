@@ -22,6 +22,18 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
+        public IResult Add(Color color)
+        {
+            _colorDal.Add(color);
+            return new SuccessResult(Messages.AddedColor);
+        }
+
+        public IResult Delete(Color color)
+        {
+            _colorDal.Delete(color);
+            return new SuccessResult(Messages.DeletedColor);
+        }
+
         public IDataResult<List<Color>> GetAll()
         {
             if (DateTime.Now.Hour == 22)
@@ -34,6 +46,12 @@ namespace Business.Concrete
         public IDataResult<Color> GetById(int colorId)
         {
             return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == colorId));
+        }
+
+        public IResult Update(Color color)
+        {
+            _colorDal.Update(color);
+            return new SuccessResult(Messages.UpdatedColor);
         }
     }
 }

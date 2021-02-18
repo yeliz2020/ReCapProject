@@ -5,6 +5,8 @@ using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 
+using Entities.Concrete;
+
 namespace ConsoleUI
 {
     class Program
@@ -16,7 +18,28 @@ namespace ConsoleUI
 
             //BrandTest();
 
-            ColorTest();
+            //ColorTest();
+
+            UserManager userManager = new UserManager(new EfUserDal());
+            Console.WriteLine("First Name: ");
+            string userNameForAdd = Console.ReadLine();
+            Console.WriteLine("Last Name: ");
+            string userSurnameForAdd = Console.ReadLine();
+            Console.WriteLine("Email Name: ");
+            string userEmailForAdd = Console.ReadLine();
+            Console.WriteLine("Password Name: ");
+            string userPasswordForAdd = Console.ReadLine();
+
+
+            User userForAdd = new User
+            {
+                FirstName = userNameForAdd,
+                LastName = userSurnameForAdd,
+                Email = userEmailForAdd,
+                Password = userPasswordForAdd
+
+            };
+            userManager.Add(userForAdd);
 
 
         }
