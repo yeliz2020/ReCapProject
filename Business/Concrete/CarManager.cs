@@ -5,7 +5,9 @@ using System.Text;
 
 using Business.Abstact;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
 
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 
 using DataAccess.Abstact;
@@ -13,6 +15,8 @@ using DataAccess.Concrete.InMemory;
 
 using Entities.Concrete;
 using Entities.DTOs;
+
+using FluentValidation;
 
 namespace Business.Concrete
 {
@@ -27,15 +31,12 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.DailyPrice > 0)
-            {
-                _carDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);
-            }
-            else
-            {
-                return new ErrorResult(Messages.FailedCarAddOrUpdate);
-            }
+            ValidationTool.Validate(new CarValidator(), car);
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
+            
+            
+             
         }
 
         public IResult Delete(Car car)
