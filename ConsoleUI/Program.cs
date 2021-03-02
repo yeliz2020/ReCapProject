@@ -36,7 +36,7 @@ namespace ConsoleUI
                 FirstName = userNameForAdd,
                 LastName = userSurnameForAdd,
                 Email = userEmailForAdd,
-                Password = userPasswordForAdd
+                
 
             };
             userManager.Add(userForAdd);

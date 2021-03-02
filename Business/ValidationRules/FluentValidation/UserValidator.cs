@@ -19,14 +19,10 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(u => u.LastName).MinimumLength(2);
             RuleFor(u => u.Email).NotEmpty();
             RuleFor(u => u.Email).EmailAddress();
-            RuleFor(u => u.Password).NotEmpty();
-            RuleFor(u => u.Password).Must(IsPasswordValid).WithMessage("Password en az sekiz karakter uzunluğunda ve en az bir harf ve bir sayı içermelidir!");
+            RuleFor(u => u.PasswordHash).NotEmpty();
+            
         }
 
-        private bool IsPasswordValid(string arg)
-        {
-            Regex regex = new Regex(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
-            return regex.IsMatch(arg);
-        }
+        
     }
 }
